@@ -1,10 +1,11 @@
-class quotesmodals {
+class Quotesmodals {
   final int id;
   final String quote;
   final String author;
-  quotesmodals(this.quote, this.id, this.author);
 
-  factory quotesmodals.fromMap({required Map data}) {
-    return quotesmodals(data['quote'], data['id'], data['author']);
+  Quotesmodals(this.quote, this.id, this.author);
+
+  factory Quotesmodals.fromMap({required Map data}) {
+    return Quotesmodals(data['quote'], data['id'], data['author']);
   }
 }

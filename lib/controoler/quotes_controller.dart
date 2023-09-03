@@ -5,7 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../helpers/quotes_modal.dart';
 
 class quoteapicontroller extends GetxController {
-  RxList<quotesmodals> quote = <quotesmodals>[].obs;
+  RxList<Quotesmodals> quote = <Quotesmodals>[].obs;
 
   quoteapicontroller() {
     getquote();

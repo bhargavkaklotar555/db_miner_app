@@ -7,10 +7,10 @@ class ApiHelper {
   ApiHelper._();
   static final ApiHelper apiHelper = ApiHelper._();
 
-  List<quotesmodals> quotes = [];
+  List<Quotesmodals> quotes = [];
   final String api = "https://dummyjson.com/quotes?limit=100";
 
-  Future<List<quotesmodals>?> getApi() async {
+  Future<List<Quotesmodals>?> getApi() async {
     http.Response response = await http.get(
       Uri.parse(api),
     );
@@ -19,7 +19,7 @@ class ApiHelper {
       Map tmpquote = jsonDecode(response.body);
       log(tmpquote.toString());
       List data = tmpquote['quotes'];
-      quotes = data.map((e) => quotesmodals.fromMap(data: e)).toList();
+      quotes = data.map((e) => Quotesmodals.fromMap(data: e)).toList();
       return quotes;
     }
     return null;

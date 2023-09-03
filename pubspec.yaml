@@ -38,6 +38,8 @@ dependencies:
   get:
   http:
   flutter_tts:
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:

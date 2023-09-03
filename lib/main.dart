@@ -1,4 +1,5 @@
 import 'package:db_miner/views/screens/detail_page.dart';
+import 'package:db_miner/views/screens/favrite_Page.dart';
 import 'package:db_miner/views/screens/homepage.dart';
 import 'package:db_miner/views/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/DetailPage',
           page: () => DetailPage(),
+        ),
+        GetPage(
+          name: '/Favrite_Page',
+          page: () => Favrite_Page(),
         ),
         GetPage(
           name: '/',
