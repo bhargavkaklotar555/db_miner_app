@@ -3,9 +3,17 @@ class Quotesmodals {
   final String quote;
   final String author;
 
-  Quotesmodals(this.quote, this.id, this.author);
+  Quotesmodals({
+    required this.quote,
+    required this.id,
+    required this.author,
+  });
 
   factory Quotesmodals.fromMap({required Map data}) {
-    return Quotesmodals(data['QUOTE'], data['Id'], data['AUTHOR']);
+    return Quotesmodals(
+      quote: data['quote'],
+      id: data['id'],
+      author: data['author'],
+    );
   }
 }

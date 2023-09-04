@@ -14,15 +14,15 @@ class DBHelper {
 
   late Database database;
 
-  String quotesTable = "Quotes_App_Table";
+  String quotesTable = "Quotes";
 
-  String qtId = "Id";
-  String qtQuotes = "QUOTE";
-  String qtAuthor = "AUTHOR";
+  String qtId = "id";
+  String qtQuotes = "quote";
+  String qtAuthor = "author";
 
   initDB() async {
     String dbPath = await getDatabasesPath();
-    String dbName = "demo2.db";
+    String dbName = "quote.db";
 
     String finalPath = join(dbPath, dbName);
 
@@ -32,7 +32,7 @@ class DBHelper {
       onCreate: (db, version) {
         db
             .execute(
-                'CREATE TABLE $quotesTable ( $qtId INTEGER PRIMARY KEY AUTOINCREMENT , $qtQuotes TEXT , $qtAuthor TEXT ) ')
+                'CREATE TABLE $quotesTable($qtId INTEGER PRIMARY KEY AUTOINCREMENT , $qtQuotes TEXT , $qtAuthor TEXT)')
             .then(
               (value) => log("Transaction Table are Created : DONE "),
             );
@@ -41,8 +41,7 @@ class DBHelper {
   }
 
   insertQuotes({required String quotes, required String author}) async {
-    String query =
-        " INSERT INTO $quotesTable($qtQuotes,$qtAuthor) VALUES( ? , ? ) ";
+    String query = "INSERT INTO $quotesTable($qtQuotes,$qtAuthor)VALUES(?,?)";
 
     List args = [quotes, author];
 
@@ -53,7 +52,7 @@ class DBHelper {
   }
 
   displayQuotes() async {
-    String query = "SELECT * FROM $quotesTable ";
+    String query = "SELECT * FROM $quotesTable";
 
     List quotes = await database.rawQuery(query);
     log(quotes.toString());

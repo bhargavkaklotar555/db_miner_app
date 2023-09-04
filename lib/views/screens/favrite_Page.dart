@@ -1,3 +1,4 @@
+import 'package:db_miner/helpers/quotes_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -21,7 +22,8 @@ class Favrite_Page extends StatelessWidget {
           future: data.getAllQuotes(),
           builder: (context, snap) {
             if (snap.hasData) {
-              if (snap.data!.isEmpty) {
+              List<Quotesmodals>? allQuotes = snap.data;
+              if (allQuotes!.isEmpty) {
                 return const Center(
                   child: Text(
                     "Empty Data",
@@ -29,12 +31,11 @@ class Favrite_Page extends StatelessWidget {
                   ),
                 );
               } else {
-                return ListView(
-                  children: [
-                    Text(
-                      data.allQuotes.value.toString(),
-                    ),
-                  ],
+                return ListView.builder(
+                  itemCount: allQuotes.length,
+                  itemBuilder: (context, index) => ListTile(
+                    title: Text(allQuotes[index].quote),
+                  ),
                 );
               }
             } else if (snap.hasError) {

@@ -23,6 +23,7 @@ class DB_Controller extends GetxController {
 
   Future<int> addQuotes(
       {required String quotes, required String author}) async {
+    log("${quotes} or ${author}");
     return await DBHelper.dbHelper.insertQuotes(quotes: quotes, author: author);
   }
 

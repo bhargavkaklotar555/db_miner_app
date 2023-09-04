@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 import 'controoler/quotes_controller.dart';
 import 'controoler/theme_controller.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DBHelper.dbHelper.initDB();
+  await DBHelper.dbHelper.initDB();
   themeController themecontroller = Get.put(themeController());
   quoteapicontroller controller = Get.put(quoteapicontroller());
   runApp(
