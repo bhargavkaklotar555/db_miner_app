@@ -6,6 +6,6 @@ class Quotesmodals {
   Quotesmodals(this.quote, this.id, this.author);
 
   factory Quotesmodals.fromMap({required Map data}) {
-    return Quotesmodals(data['quote'], data['id'], data['author']);
+    return Quotesmodals(data['QUOTE'], data['Id'], data['AUTHOR']);
   }
 }

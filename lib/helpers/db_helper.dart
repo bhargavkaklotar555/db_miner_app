@@ -14,7 +14,7 @@ class DBHelper {
 
   late Database database;
 
-  String quotesTable = "QuotesTable";
+  String quotesTable = "Quotes_App_Table";
 
   String qtId = "Id";
   String qtQuotes = "QUOTE";
@@ -22,12 +22,13 @@ class DBHelper {
 
   initDB() async {
     String dbPath = await getDatabasesPath();
-    String dbName = "demo.db";
+    String dbName = "demo2.db";
 
     String finalPath = join(dbPath, dbName);
 
     database = await openDatabase(
       finalPath,
+      version: 1,
       onCreate: (db, version) {
         db
             .execute(
@@ -55,6 +56,7 @@ class DBHelper {
     String query = "SELECT * FROM $quotesTable ";
 
     List quotes = await database.rawQuery(query);
+    log(quotes.toString());
 
     List<Quotesmodals> allQuotes =
         quotes.map((e) => Quotesmodals.fromMap(data: e)).toList();

@@ -1,3 +1,4 @@
+import 'package:db_miner/helpers/db_helper.dart';
 import 'package:db_miner/views/screens/detail_page.dart';
 import 'package:db_miner/views/screens/favrite_Page.dart';
 import 'package:db_miner/views/screens/homepage.dart';
@@ -5,9 +6,14 @@ import 'package:db_miner/views/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'controoler/quotes_controller.dart';
 import 'controoler/theme_controller.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DBHelper.dbHelper.initDB();
+  themeController themecontroller = Get.put(themeController());
+  quoteapicontroller controller = Get.put(quoteapicontroller());
   runApp(
     MyApp(),
   );
@@ -15,7 +21,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  final themeController themecontroller = Get.put(themeController());
+
+  themeController themecontroller = Get.find<themeController>();
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/',
-          page: () => Splash_Screen_Page(),
+          page: () => Splash_Screen(),
         ),
       ],
     );

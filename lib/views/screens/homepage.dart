@@ -8,9 +8,10 @@ import '../../controoler/theme_controller.dart';
 import 'detail_page.dart';
 
 class HomePage extends StatelessWidget {
-  quoteapicontroller controller = Get.put(quoteapicontroller());
   HomePage({super.key});
   themeController theme = Get.find<themeController>();
+  quoteapicontroller controller = Get.find<quoteapicontroller>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
