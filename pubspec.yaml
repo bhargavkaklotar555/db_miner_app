@@ -41,6 +41,10 @@ dependencies:
   sqflite:
   path:
   animated_splash_screen:
+  flutter_slidable: ^3.0.0
+  get_storage:
+  share_plus:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

@@ -46,7 +46,16 @@ class DBHelper {
     List args = [quotes, author];
 
     int Quotes = await database.rawInsert(query, args);
-    Get.snackbar("data", "added!!", backgroundColor: Colors.green);
+    Get.snackbar(
+      "Added",
+      "to your Wishlist",
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+      icon: Icon(
+        Icons.check_circle_sharp,
+        color: Colors.white,
+      ),
+    );
 
     return Quotes;
   }
@@ -61,5 +70,18 @@ class DBHelper {
         quotes.map((e) => Quotesmodals.fromMap(data: e)).toList();
 
     return allQuotes;
+  }
+
+  Future<int> removeQuotes({required int id}) async {
+    String sql = "DELETE FROM $quotesTable WHERE $qtId = $id";
+    return database.rawDelete(sql);
+  }
+
+  Future<List<Quotesmodals>> searchData({required String val}) async {
+    String sql = 'SELECT * FROM $quotesTable WHERE $qtQuotes LIKE "%$val%" ';
+    List data = await database.rawQuery(sql);
+    List<Quotesmodals> alldata =
+        data.map((e) => Quotesmodals.fromMap(data: e)).toList();
+    return alldata;
   }
 }

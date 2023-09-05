@@ -1,16 +1,23 @@
+import 'package:db_miner/views/screens/search_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../../controoler/db_controller.dart';
+import '../../controoler/img_list.dart';
 import '../../controoler/quotes_controller.dart';
-import '../../controoler/theme_controller.dart';
+import '../../helpers/db_helper.dart';
+import '../../helpers/favrite_helper.dart';
 import 'detail_page.dart';
+import 'favrite_Page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-  themeController theme = Get.find<themeController>();
   quoteapicontroller controller = Get.find<quoteapicontroller>();
+  DB_Controller data = Get.find<DB_Controller>();
+  All_Imges all_Imges = Get.find<All_Imges>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +27,19 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              theme.changeTheme();
+              Get.to(
+                Search_Page(),
+              );
             },
-            icon: Icon(Icons.dark_mode),
+            icon: Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: () {
+              Get.to(
+                Favrite_Page(),
+              );
+            },
+            icon: Icon(Icons.favorite),
           ),
         ],
       ),
@@ -40,6 +57,7 @@ class HomePage extends StatelessWidget {
                         DetailPage(),
                         arguments: index,
                       );
+                      all_Imges.changeImage();
                     },
                     child: Card(
                       child: ListTile(
