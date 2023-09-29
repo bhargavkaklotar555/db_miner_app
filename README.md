@@ -13,6 +13,7 @@ https://github.com/bhargavkaklotar555/db_miner_app/assets/130822397/9a3ed183-e64
 "Quotes" aims to provide an immersive and personalized experience for users seeking inspiration and motivation. By incorporating SQLite Database, Animation, API Calling, Local JSON Bank, fetching and saving quotes, category-wise organization, light and dark themes, splash screen, detailed quote screens, random background images and font families, quote wallpaper creation, and setting device wallpapers, the app offers a comprehensive solution for users to discover and engage with uplifting quotes that resonate with them.
 
 Photos:
+
 <img src= "https://github.com/bhargavkaklotar555/db_miner_app/assets/130822397/561def8d-1659-47d5-9a37-06c082e26f41" width="250px"></img>
 <img src= "https://github.com/bhargavkaklotar555/db_miner_app/assets/130822397/70bb586c-2e28-4eb8-872e-52fa5c0d140b" width="250px"></img>
 <img src= "https://github.com/bhargavkaklotar555/db_miner_app/assets/130822397/7d96faac-1b7a-4229-95f7-221581fbe69d" width="250px"></img>
