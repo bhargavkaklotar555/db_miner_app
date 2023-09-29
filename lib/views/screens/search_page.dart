@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:db_miner/helpers/quotes_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +27,7 @@ class Search_Page extends StatelessWidget {
             children: [
               TextField(
                 onChanged: (val) {
+                  log(val);
                   db_controller.searchData(val: val);
                 },
                 decoration: InputDecoration(
@@ -43,6 +46,7 @@ class Search_Page extends StatelessWidget {
                       itemBuilder: (context, index) {
                         Quotesmodals modal =
                             db_controller.searchdata.value[index];
+                        log(modal.quote);
                         return ListTile(
                           title: Text(modal.quote),
                         );

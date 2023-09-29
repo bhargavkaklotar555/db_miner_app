@@ -45,6 +45,8 @@ dependencies:
   get_storage:
   share_plus:
   path_provider:
+  google_fonts:
+  share_extend:
 
 dev_dependencies:
   flutter_test:

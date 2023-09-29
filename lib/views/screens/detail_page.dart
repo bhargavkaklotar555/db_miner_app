@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
 
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:share_extend/share_extend.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../controoler/db_controller.dart';
@@ -35,8 +38,8 @@ class DetailPage extends StatelessWidget {
     GlobalKey imageKey = GlobalKey();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Detail Page",
+        title: Text(
+          "${controller.quote.value[index].author}",
           style: TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -49,24 +52,6 @@ class DetailPage extends StatelessWidget {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              speak.speak(text: text!);
-            },
-            icon: Icon(
-              CupertinoIcons.speaker_2_fill,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              speak.stop();
-            },
-            icon: Icon(
-              CupertinoIcons.speaker_slash_fill,
-              color: Colors.white,
-            ),
-          ),
           IconButton(
             onPressed: () {
               if (Favrite_helper.favrite_helper.checkFirstTime) {
@@ -96,40 +81,24 @@ class DetailPage extends StatelessWidget {
           ),
           IconButton(
             onPressed: () async {
-              RenderRepaintBoundary bountry = imageKey.currentContext!
-                  .findRenderObject() as RenderRepaintBoundary;
-              var img = await bountry.toImage(
-                pixelRatio: 5,
+              String a;
+              String b;
+              a = controller.quote.value[index].quote;
+              b = "- ${controller.quote.value[index].author}";
+
+              ShareExtend.share(
+                a,
+                b,
               );
-              var bit = await img.toByteData(format: ImageByteFormat.png);
-              var uList = bit!.buffer.asUint8List();
 
-              print(".................................");
-              print(uList.toString());
-              print(".................................");
-
-              if (uList != null) {
-                Directory dir = await getApplicationDocumentsDirectory();
-
-                DateTime d = DateTime.now();
-                File file = await File(
-                        "${dir.path}/FA${d.year}${d.month}${d.day}${d.hour}${d.minute}${d.second}.png")
-                    .create();
-                await file.writeAsBytes(uList);
-
-                print(".................................");
-
-                print("Image path: ${file.path}");
-                print(".................................");
-
-                Share.shareXFiles([XFile(file.path)]);
-              }
+              log('" ${controller.quote.value[index].quote} "');
+              log("- ${controller.quote.value[index].author}");
             },
             icon: Icon(
               Icons.share,
               color: Colors.white,
             ),
-          )
+          ),
         ],
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -162,20 +131,51 @@ class DetailPage extends StatelessWidget {
                         children: [
                           Text(
                             '" ${controller.quote.value[index].quote} "',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20),
+                            style: GoogleFonts.lobster(
+                              fontSize: 22,
+                              wordSpacing: 1,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
                           ),
                           Row(
                             children: [
                               const Spacer(),
-                              Text(
-                                "- ${controller.quote.value[index].author}",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.white,
-                                    fontSize: 16),
+                              Column(
+                                children: [
+                                  Text(
+                                    "- ${controller.quote.value[index].author}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white,
+                                        fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          speak.speak(text: text!);
+                                        },
+                                        icon: Icon(
+                                          CupertinoIcons.speaker_2_fill,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          speak.stop();
+                                        },
+                                        icon: Icon(
+                                          CupertinoIcons.speaker_slash_fill,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
                               ),
                             ],
                           ),

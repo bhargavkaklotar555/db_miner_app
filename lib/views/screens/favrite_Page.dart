@@ -51,6 +51,7 @@ class Favrite_Page extends StatelessWidget {
                                 .removeQuotes(id: allQuotes[index].id);
                             data.QuotesController();
                             Favrite_helper.favrite_helper.First();
+                            Navigator.of(context).pop();
                           },
                         ),
                         SlidableAction(
@@ -62,8 +63,10 @@ class Favrite_Page extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: ListTile(
-                      title: Text(allQuotes[index].quote),
+                    child: Card(
+                      child: ListTile(
+                        title: Text(allQuotes[index].quote),
+                      ),
                     ),
                   ),
                 );
